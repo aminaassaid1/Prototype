@@ -1,0 +1,28 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f0f0;
+        font-size: 16px;
+        line-height: 1.6;
+        letter-spacing: 0.05em;
+
+    }
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+h1 {
+    color: #333;
+    font-weight: 700;
+}
+table {
+    background-color: #fff;
+}
+.table th, .table td {
+    border: none;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f2f2f2;
+}
