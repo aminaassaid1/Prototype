@@ -5,23 +5,33 @@ include __DIR__ . '/stagiare2.php';
 class GestionStagiaire {
     private $conn;
 
+
     public function __construct($conn) {
         $this->conn = $conn;
     }
 
-    public function createStagiaire(Stagiaire $stagiaire) {
+    public function createStagiaire($nom, $cne) {
         try {
+            if ($nom === null || $cne === null) {
+                throw new Exception("Stagiaire properties cannot be null.");
+            }
+
             $sql = "INSERT INTO personne (nom, CNE) VALUES (:nom, :cne)";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':nom', $stagiaire->getNom());
-            $stmt->bindParam(':cne', $stagiaire->getCNE());
+
+            $stmt->bindParam(':nom', $nom);
+            $stmt->bindParam(':cne', $cne);
+
             $stmt->execute();
+
             return true;
         } catch (PDOException $e) {
-            echo "Error: " . $e->getMessage();
-            return false;
+            throw new Exception("Error creating Stagiaire: " . $e->getMessage());
         }
     }
+
+
+
 
     public function getStagiaireById($id) {
         try {
@@ -36,21 +46,21 @@ class GestionStagiaire {
         }
     }
 
-    public function updateStagiaire(Stagiaire $stagiaire) {
+    public function updateStagiaire($id, $nom, $cne) {
         try {
             $sql = "UPDATE personne SET nom = :nom, CNE = :cne WHERE id = :id";
             $stmt = $this->conn->prepare($sql);
-            $stmt->bindParam(':nom', $stagiaire->getNom());
-            $stmt->bindParam(':cne', $stagiaire->getCNE());
-            $stmt->bindParam(':id', $stagiaire->getId());
+            $stmt->bindParam(':nom', $nom);
+            $stmt->bindParam(':cne', $cne);
+            $stmt->bindParam(':id', $id);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
-            // Log the error instead of echoing it
-            error_log("Error updating Stagiaire: " . $e->getMessage());
+            echo "Error: " . $e->getMessage();
             return false;
         }
     }
+
 
     public function deleteStagiaire($id) {
         try {
