@@ -1,6 +1,4 @@
-/* styles.css */
 
-/* Overall styling */
 body {
     font-family: 'Arial', sans-serif;
 }
@@ -9,37 +7,34 @@ body {
     margin-top: 50px;
 }
 
-/* Header styling */
 h2 {
     color: #007bff;
 }
 
-/* Add Vehicle button styling */
 .btn-primary {
     background-color: #28a745;
     border-color: #28a745;
 }
 
-/* Table styling */
 .table {
     margin-top: 20px;
 }
 
-/* Modal styling */
+
 .modal-header {
     background-color: #007bff;
     color: #fff;
 }
 
-/* Edit and Delete buttons styling */
+
 .btn-primary,
 .btn-danger {
     margin-right: 5px;
 }
 
-/* Footer styling */
+
 .modal-footer {
     justify-content: space-between;
 }
 
-/* Optional: Add more styles as needed */
+

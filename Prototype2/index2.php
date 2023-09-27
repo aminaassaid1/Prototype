@@ -110,7 +110,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <label for="cne" class="form-label">CNE:</label>
                         <input type="text" class="form-control" id="cne" name="cne" required>
                     </div>
-                    <!-- Add other fields as needed -->
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" name="add" class="btn btn-primary">Save changes</button>
