@@ -1,29 +1,36 @@
 <?php
+global $conn;
 include  "GestionStagiaire3.php";
 include "connection3.php";
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $stagiaire = new GestionStagiaire($conn);
 
-    if (isset($_POST["update"])) {
-        $id = $_POST["edit-id"];
-        $nom = $_POST["edit-nom"];
-        $CNE = $_POST["edit-CNE"];
-        $ville = $_POST["edit-ville"];
-        $stagiaire->updateStagiaire($id, $nom, "samadi", $CNE, $ville);
+    if($stagiaire){
+        echo "yes";
+    }else{
+        echo "non";
+    }
+
+if (isset($_POST["update"])) {
+    $id = $_POST["edit-id"];
+    $nom = $_POST["edit-nom"];
+    $CNE = $_POST["edit-CNE"];
+    $ville = $_POST["edit-ville"];
+    $stagiaire->updateStagiaire($id, $nom, $CNE, $ville);
     } elseif (isset($_POST["delete"])) {
         $id = $_POST["delete-id"];
         $stagiaire->deleteStagiaire($id);
     } elseif (isset($_POST["add"])) {
         $nom = $_POST["nom"];
         $CNE = $_POST["cne"];
-        $stagiaire->createStagiaire($nom, $CNE);
-    }
+        $ville = $_POST["ville"];
+    $id_ville = $stagiaire->getVilleIdByName($ville);
+    $stagiaire->createStagiaire($nom, $CNE, $ville, $id_ville);
 
-    // Redirect.
-    header("Location: " . $_SERVER['PHP_SELF']);
-    exit();
 }
+
+
+
 ?>
 
 
@@ -58,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </thead>
         <tbody>
         <?php
-        // Define the SQL query
+        // Define the SQL query_
         $sql = "SELECT personne.*, ville.nom_ville
             FROM personne
             JOIN ville ON personne.id_ville = ville.id";
@@ -121,6 +128,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <div class="mb-3">
                         <label for="cne" class="form-label">CNE:</label>
                         <input type="text" class="form-control" id="cne" name="cne" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="ville" class="form-label">Ville</label>
+                        <input type="text" class="form-control" id="ville" name="ville" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

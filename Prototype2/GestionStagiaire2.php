@@ -1,4 +1,5 @@
 <?php
+global $conn;
 include __DIR__ . '/connection2.php';
 include __DIR__ . '/stagiare2.php';
 
