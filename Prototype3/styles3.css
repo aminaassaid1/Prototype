@@ -1,0 +1,40 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h2 {
+    color: #007bff;
+}
+
+.btn-primary {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.table {
+    margin-top: 20px;
+}
+
+
+.modal-header {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+.btn-primary,
+.btn-danger {
+    margin-right: 5px;
+}
+
+
+.modal-footer {
+    justify-content: space-between;
+}
+
+
