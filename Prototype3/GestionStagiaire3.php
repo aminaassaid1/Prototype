@@ -32,6 +32,7 @@ class GestionStagiaire {
         }
     }
 
+    // GestionStagiaire3.php
     public function getVilleIdByName($nom_ville) {
         try {
             $sql = "SELECT id FROM ville WHERE nom_ville = :nom_ville";
@@ -50,6 +51,8 @@ class GestionStagiaire {
             throw new Exception("An error occurred while getting city id.");
         }
     }
+
+
 
     public function getStagiaireById($id) {
         try {
@@ -98,6 +101,22 @@ class GestionStagiaire {
             return false;
         }
     }
+
+    public function countstagiaire()
+    {
+        $sql = "SELECT ville.nom_ville AS Ville, COUNT(personne.id) AS StagiaireCount
+            FROM personne
+            LEFT JOIN ville ON personne.id_ville = ville.id
+            GROUP BY ville.nom_ville";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        $chartData = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        // Encode the data as JSON
+        return $chartData;
+    }
+
 
     private function logError($message) {
         error_log($message);
